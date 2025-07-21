@@ -2,18 +2,18 @@ RNA-Seq Analysis Pipeline-STAR
 Bu proje, Drosophila melanogaster RNA-Seq verileri üzerinde kalite kontrol, hizalama, gen ifade sayımı ve özet raporlamayı içeren adım adım bir analiz süreci sunar. Scriptler modüler yapıdadır ve bash ortamında çalıştırılabilir.
 
 Dosyalar:
-https://training.galaxyproject.org/training-material/topics/transcriptomics/tutorials/ref-based/tutorial.html#tip-importing-via-links
-1.
+>> https://training.galaxyproject.org/training-material/topics/transcriptomics/tutorials/ref-based/tutorial.html#tip-importing-via-links
+>1.
 https://zenodo.org/record/6457007/files/GSM461177_1_subsampled.fastqsanger
 https://zenodo.org/record/6457007/files/GSM461177_2_subsampled.fastqsanger
 https://zenodo.org/record/6457007/files/GSM461180_1_subsampled.fastqsanger
 https://zenodo.org/record/6457007/files/GSM461180_2_subsampled.fastqsanger
-2.
+>2.
 https://zenodo.org/record/6457007/files/Drosophila_melanogaster.BDGP6.32.109_UCSC.gtf.gz
 
 https://hgdownload.soe.ucsc.edu/goldenPath/dm6/bigZips/ 
 https://hgdownload.soe.ucsc.edu/goldenPath/dm6/bigZips/genes/
-3.
+>3.
 dm6.ensGene.gtf.gz 
 
 >>İçerik
@@ -30,52 +30,52 @@ dm6.ensGene.gtf.gz
 11. Örnek grup bilgileri dosyasının hazırlanması
 
 >>Çıktılar
-1. bash 01_setup.sh
+>1. bash 01_setup.sh
 mapping/ klasörü; data/fastq/    data/ref/     data/index/
 
-2. bash 02_fastq_multiqc.sh
+>2. bash 02_fastq_multiqc.sh
 data/fastq/ ;
 GSM461177_1.fastqsanger GSM461177_2.fastqsanger GSM461180_1.fastqsanger GSM461180_2.fastqsanger
 
-3. bash 03_reference_setup.sh
+>3. bash 03_reference_setup.sh
    data/ref/ ; dm6.fa (referans genom) dm6.gtf (anotasyon)
    
-4. bash 04_fastqc_multiqc.sh
+>4. bash 04_fastqc_multiqc.sh
 data/fastq/ ; *_fastqc.zip *_fastqc.html
 
 multiqc_report.html
 
-5. bash 05_generate_index.sh
+>5. bash 05_generate_index.sh
 data/index/ ; STAR tarafından oluşturulan birçok dosya (SA, SAindex, Genome, sjdb*, vs.)
 
-6. bash 06_map_reads.sh
+>6. bash 06_map_reads.sh
 mapped/;
 
 GSM461177Aligned.sortedByCoord.out.bam GSM461177Log.final.out GSM461177Log.out GSM461177Log.progress.out GSM461177SJ.out.tab (Diğer örnekler için de aynı şekilde)
 
-7. bash 07_star_quality.sh
+>7. bash 07_star_quality.sh
 Uniquely mapped reads %     % of reads mapped to multiple loci       % of reads unmapped
 
-8. bash 08_star_multiqc.sh
+>8. bash 08_star_multiqc.sh
 star_multiqc_report.html
 
-9. bash 09_samtools_index.sh
+>9. bash 09_samtools_index.sh
 mapped/ ;
 
 *.bam.bai
 
-10. bash 10_counts.sh
+>10. bash 10_counts.sh
 counts/ ;
 
 GSM461177.counts    all_samples.counts.txt     all_samples.counts.txt.summary
 
-11. bash 11_summary_multiqc.sh
+>11. bash 11_summary_multiqc.sh
 featurecounts_report.html
 
-12. bash 12_counts_order.sh
+>12. bash 12_counts_order.sh
 counts/gene_counts_simple.csv
 
-13. bash 13_sample_info.sh
+>13. bash 13_sample_info.sh
 samples.csv
 
 
@@ -96,10 +96,10 @@ Multiqc raporu
 
 Okuma
 Sample Name
-Aligned  Uniq aligned
-GSM461177	87.6% 82.2%
-GSM461180	79.8% 75.6%
+Aligned;Uniq;aligned
+GSM461177-87.6%-82.2%
+GSM461180-79.8%-75.6%
 
-Bu sonuçlara göre, %70–80+ uniquely aligned oranları, genellikle yeterli kaliteyi ve biyolojik anlam taşımaya uygun veriyi gösterir. Bu sebeple trimming yapılmamıştır.
+>>Bu sonuçlara göre, %70–80+ uniquely aligned oranları, genellikle yeterli kaliteyi ve biyolojik anlam taşımaya uygun veriyi gösterir. Bu sebeple trimming yapılmamıştır.
 
 
